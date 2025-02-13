@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
+//import java.util.TreeSet;
 
 /**
  *
@@ -13,6 +13,9 @@ import java.util.TreeSet;
  * @version 1.0
  */
 public class AgenciaAlquiler {
+
+    public AgenciaAlquiler(String sauces) {
+    }
 
     //private TreeSet<Vehiculo> vehiculos;
     private String nombre;
@@ -40,7 +43,7 @@ public class AgenciaAlquiler {
 
     public boolean incluirVehiculo(Vehiculo vehiculo) {
         if (vehiculo != null) {
-            return flota.putIfAbsent(vehiculo.getMatricula(), vehiculo == new Vehiculo());
+            return flota.putIfAbsent(vehiculo.getMatricula(), vehiculo) == null;
         }
         return false;
     }
@@ -82,7 +85,10 @@ public class AgenciaAlquiler {
     }
     
     public Vehiculo getVehiculoMasBarato(){
-        return Collections.min(flota.values(), new ComparadorPrecio());
+        if (!flota.isEmpty()) {
+            return Collections.min(flota.values(), new ComparadorPrecio()); // quedarme con el menor
+        }
+        return null;
     }
 
     /**

@@ -20,7 +20,7 @@ public class Turismo extends Vehiculo {
         super(matricula, grupo);
     }
 
-    public Turismo(int plazas, String matricula, Grupo grupo) {
+    public Turismo(String matricula, Grupo grupo, int plazas) {
         super(matricula, grupo);
         this.plazas = plazas;
     }
@@ -51,6 +51,8 @@ public class Turismo extends Vehiculo {
 
     @Override
     public float getPrecioAlquiler() {
+        /* Otra posible manera de hacerlo sería la siguiete: 
+        
         return switch (getGrupo()) {
             case A ->
                 50 + 1.5f * plazas;
@@ -59,5 +61,8 @@ public class Turismo extends Vehiculo {
             case C ->
                 60 + 2.5f * plazas;
         };
+        
+        */
+        return getGrupo().getPrecioBase()+getGrupo().getFactorTurismo()*plazas; 
     }
 }

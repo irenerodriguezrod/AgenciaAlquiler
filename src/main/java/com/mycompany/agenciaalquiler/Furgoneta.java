@@ -20,6 +20,11 @@ public class Furgoneta extends Vehiculo {
         super(matricula, grupo);
     }
 
+    public Furgoneta(String matricula, Grupo grupo, float capacidad) {
+    super(matricula, grupo); // Llamada al constructor de la clase padre Vehiculo
+    this.capacidad = capacidad; // Inicialización de la capacidad
+}
+    
     @Override
     public String toString() {
         return super.toString() + " , " + capacidad;
@@ -45,6 +50,8 @@ public class Furgoneta extends Vehiculo {
 
     @Override
     public float getPrecioAlquiler() {
+        /*
+        
         return switch (getGrupo()) {
             case A ->
                 50 + 5f * capacidad;
@@ -53,5 +60,8 @@ public class Furgoneta extends Vehiculo {
             case C ->
                 60 + 15f * capacidad;
         };
+        
+        */
+        return getGrupo().getPrecioBase()+getGrupo().getFactorFurgoneta()*capacidad; 
     }
 }
