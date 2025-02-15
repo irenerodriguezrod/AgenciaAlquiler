@@ -48,6 +48,10 @@ public class Furgoneta extends Vehiculo {
         return precio;
     }
 
+
+    /**
+     * Sirve para obtener el preco de alquiler. Se calcula cuando se conoce el grupo, el precio y la capacidad de la furgoneta
+     */
     @Override
     public float getPrecioAlquiler() {
         /*
