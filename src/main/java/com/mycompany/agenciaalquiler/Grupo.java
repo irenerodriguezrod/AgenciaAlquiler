@@ -1,7 +1,7 @@
 package com.mycompany.agenciaalquiler;
 
 /**
- *
+ * Sirve para calcular los diferentes precios que endran los vehiculos. Cada grupo tiene un valor (precioBase), y un determinado coste (factoorTurismo o factorFurgoneta dependiendo del tipo de vehículo)
  * @author Irene RODRÍGUEZ RODRÍGUEZ
  * @version 2.0
  */

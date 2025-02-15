@@ -1,5 +1,6 @@
 package com.mycompany.agenciaalquiler;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -153,7 +154,7 @@ public class AppAgenciaAlquiler {
                     /*for(Vehiculo v: aa.listarVehiculosPorPrecio()){
                         System.out.println(v);
                     }*/
- /*vehiculo.getVehiculoMasBarato();
+                    /*vehiculo.getVehiculoMasBarato();
                     if (masBarato != null) {
                         System.out.println("El vehículo más barato es: " + masBarato);
                     }*/
@@ -163,11 +164,13 @@ public class AppAgenciaAlquiler {
                 }
 
                 case 6 -> { // listar turismos
+                    List<Vehiculo> listadoAImprimir =new ArrayList<>();
                     for (Vehiculo v : aa.getFlota()) {
                         if (v instanceof Turismo t) {
-                            System.out.println(t); //esto evita hacer casting 
+                            listadoAImprimir.add(v);
                         }
                     }
+                    mostrarListadoVehiculos(listadoAImprimir);
                 }
 
                 case 7 -> { // listar furgoneta
@@ -205,13 +208,8 @@ public class AppAgenciaAlquiler {
     }
 
     private static void mostrarListadoVehiculos(List<Vehiculo> listado) {
-        if (listado.isEmpty()) {
-            System.out.println("No hay vehículos disponibles.");
-        } else {
-            for (Vehiculo v : listado) {
-                System.out.println(v); // Se imprime el `toString()` de cada vehículo
-            }
+        for (Vehiculo v : listado) {
+            System.out.println(v); // Se imprime el `toString()` de cada vehículo
         }
     }
-
 }

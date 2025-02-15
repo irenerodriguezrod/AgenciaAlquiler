@@ -69,15 +69,20 @@ public abstract class Vehiculo implements Comparable<Vehiculo>{
     }
     
     /**
-     *
+     * Compara dos vehiculos
      * @param v
-     * @return
+     * @return los vehiculos que hemos introducido 
      */
     @Override
     public int compareTo(Vehiculo v) {
         return this.matricula.compareTo(v.matricula);
     }
     
+    /**
+     * Calcula el precio de alquiler de un determinado vehiculo
+     * @param dias
+     * @return el precio del alquiler de un vehiculo (se calcula multiplicando el precio de alquiler por los dias)
+     */
     public float getPrecioAlquiler(int dias){
         return dias*getPrecioAlquiler();
     }
