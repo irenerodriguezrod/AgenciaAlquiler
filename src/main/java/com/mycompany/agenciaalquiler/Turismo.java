@@ -1,5 +1,7 @@
 package com.mycompany.agenciaalquiler;
 
+import java.util.zip.DataFormatException;
+
 /**
  *
  * @author Irene RODRÍGUEZ RODRÍGUEZ
@@ -12,7 +14,7 @@ public class Turismo extends Vehiculo {
     public Turismo() {
     }
 
-    public Turismo(String matricula) {
+    public Turismo(String matricula) throws MatriculaException {
         super(matricula);
     }
 
@@ -20,8 +22,12 @@ public class Turismo extends Vehiculo {
         super(matricula, grupo);
     }
 
-    public Turismo(String matricula, Grupo grupo, int plazas) {
+    public Turismo(String matricula, Grupo grupo, int plazas) throws DataFormatException {
         super(matricula, grupo);
+
+        if (plazas < 0 || plazas > 9) {
+            throw new DataFormatException("El número de plazas es incorrecto");
+        }
         this.plazas = plazas;
     }
 
@@ -62,7 +68,9 @@ public class Turismo extends Vehiculo {
                 60 + 2.5f * plazas;
         };
         
-        */
-        return getGrupo().getPrecioBase()+getGrupo().getFactorTurismo()*plazas; 
+         */
+        return getGrupo().getPrecioBase() + getGrupo().getFactorTurismo() * plazas;
     }
+    
+    
 }

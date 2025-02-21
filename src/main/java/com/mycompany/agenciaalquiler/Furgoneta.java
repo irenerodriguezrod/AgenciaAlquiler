@@ -12,7 +12,7 @@ public class Furgoneta extends Vehiculo {
     public Furgoneta() {
     }
 
-    public Furgoneta(String matricula) {
+    public Furgoneta(String matricula) throws MatriculaException {
         super(matricula);
     }
 
@@ -21,10 +21,13 @@ public class Furgoneta extends Vehiculo {
     }
 
     public Furgoneta(String matricula, Grupo grupo, float capacidad) {
-    super(matricula, grupo); // Llamada al constructor de la clase padre Vehiculo
-    this.capacidad = capacidad; // Inicialización de la capacidad
-}
-    
+        super(matricula, grupo); // Llamada al constructor de la clase padre Vehiculo
+        if (capacidad < 0) {
+            throw new IllegalArgumentException("La capacidad es incorrecta");
+        }
+        this.capacidad = capacidad; // Inicialización de la capacidad
+    }
+
     @Override
     public String toString() {
         return super.toString() + " , " + capacidad;
@@ -48,9 +51,9 @@ public class Furgoneta extends Vehiculo {
         return precio;
     }
 
-
     /**
-     * Sirve para obtener el preco de alquiler. Se calcula cuando se conoce el grupo, el precio y la capacidad de la furgoneta
+     * Sirve para obtener el preco de alquiler. Se calcula cuando se conoce el
+     * grupo, el precio y la capacidad de la furgoneta
      */
     @Override
     public float getPrecioAlquiler() {
@@ -65,7 +68,7 @@ public class Furgoneta extends Vehiculo {
                 60 + 15f * capacidad;
         };
         
-        */
-        return getGrupo().getPrecioBase()+getGrupo().getFactorFurgoneta()*capacidad; 
+         */
+        return getGrupo().getPrecioBase() + getGrupo().getFactorFurgoneta() * capacidad;
     }
 }

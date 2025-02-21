@@ -1,6 +1,8 @@
 package com.mycompany.agenciaalquiler;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -12,10 +14,12 @@ public abstract class Vehiculo implements Comparable<Vehiculo>{
     private Grupo grupo;
     
     public Vehiculo(){
-    
     }
 
-    public Vehiculo(String matricula) {
+    public Vehiculo(String matricula) throws MatriculaException {
+        if(!esMatriculaValida(matricula)){
+            throw new MatriculaException("Formato de matricula incorrecto");
+        }
         this.matricula = matricula;
     }
     
@@ -27,8 +31,12 @@ public abstract class Vehiculo implements Comparable<Vehiculo>{
     public String getMatricula() {
         return matricula;
     }
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public void setMatricula(String matricula) throws MatriculaException {
+        if(!esMatriculaValida(matricula)){
+            throw new MatriculaException("Formato de matricula incorrecto");
+        }
+      
+        this.matricula = matricula;  
     }
 
     public Grupo getGrupo() {
@@ -88,4 +96,12 @@ public abstract class Vehiculo implements Comparable<Vehiculo>{
     }
     
     public abstract float getPrecioAlquiler();
+    
+    public static boolean esMatriculaValida(String matricula) {
+        String patron = "([0-9]{4})([B-Z&&[^EIOUQ]]{3})"; //regex substracción. coincide con cualquier caracter que este en el primer rango pero no en el segundo
+        Pattern p = Pattern.compile(patron);
+        Matcher m = p.matcher(matricula);
+        
+        return false;
+    }
 }
